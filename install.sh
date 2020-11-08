@@ -12,10 +12,16 @@ for f in $(find config/* -type f); do
 #        mv "$HOME/.$f" "$HOME/.$f.bak"
 #    fi
     
-    ln -sfn "$(readlink -f $f)" "$HOME/.$f"
+    ln -svfn "$(readlink -f $f)" "$HOME/.$f"
 done
 
 # Install personal zsh config
-ln -sfn "$(readlink -f ./zsh_files)" "$HOME/.zsh_files" && \
-ln -sfn "$(readlink -f ./zshrc)" "$HOME/.zshrc" && \
-ln -sfn "$(readlink -f ./p10k.zsh)" "$HOME/.p10k.zsh"
+if [[ ! -d "$HOME/.zsh" ]]; then
+    mkdir "$HOME/.zsh"
+fi
+for f in $(find zsh/* -type f); do
+    ln -svfn "$(readlink -f $f)" "$HOME/.zsh/.$(basename $f)"
+done
+ln -svfn "$(readlink -f ./zshenv)" "$HOME/.zshenv"
+
+echo " Done!"

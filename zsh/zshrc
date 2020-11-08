@@ -34,14 +34,17 @@ zinit for \
     romkatv/powerlevel10k
 
 # Load a few useful plugins for zsh with Turbo
-zinit wait lucid for \
+zinit wait"0a" lucid for \
     OMZL::git.zsh \
     OMZP::git \
     OMZP::pipenv \
     OMZP::colored-man-pages \
-    OMZP::command-not-found \
-    zdharma/history-search-multi-word \
+    OMZP::command-not-found
+    
+zinit wait"0b" lucid for \
  light-mode atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    Aloxaf/fzf-tab \
+ light-mode \
     zdharma/fast-syntax-highlighting \
  blockf \
     zsh-users/zsh-completions \
@@ -51,8 +54,8 @@ zinit wait lucid for \
 ### End of Zinit's installer chunk
 
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit .p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/$ZDOTDIR/.p10k.zsh
 
 # Load functions
-source $HOME/.zsh_files/.functions
+source $ZDOTDIR/.functions
