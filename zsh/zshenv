@@ -1,0 +1,5 @@
+# Set zsh history file
+HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
+HISTTIMEFORMAT="[%F %T] " 
+HISTSIZE=100000000
+SAVEHIST=100000000
