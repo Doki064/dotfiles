@@ -55,4 +55,4 @@ zinit wait lucid for \
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Load functions
-source $HOME/.zsh/.functions
+source $HOME/.zsh_files/.functions
