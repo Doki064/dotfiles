@@ -23,5 +23,6 @@ for f in $(find zsh/* -type f); do
     ln -svfn "$(readlink -f $f)" "$HOME/.zsh/.$(basename $f)"
 done
 ln -svfn "$(readlink -f ./zshenv)" "$HOME/.zshenv"
+ln -svfn "$(readlink -f ./p10k.zsh)" "$HOME/.p10k.zsh"
 
 echo " Done!"

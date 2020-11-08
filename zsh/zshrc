@@ -54,8 +54,11 @@ zinit wait"0b" lucid for \
 ### End of Zinit's installer chunk
 
 
-# To customize prompt, run `p10k configure` or edit .p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/$ZDOTDIR/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Load functions
 source $ZDOTDIR/.functions
+
+# Set zsh options
+setopt autocd
