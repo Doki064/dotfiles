@@ -12,7 +12,7 @@ for f in $(find config/* -type f); do
         mv "$HOME/.$f" "$HOME/.$f.bak"
     fi
     
-    ln -sf "$(readlink -f '$f')" "$HOME/.$f"
+    ln -sf "$(readlink -f $f)" "$HOME/.$f"
 done
 
 # Install personal zsh config
