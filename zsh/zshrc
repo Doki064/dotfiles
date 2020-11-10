@@ -40,7 +40,7 @@ zinit wait"0a" lucid for \
     OMZP::pipenv \
     OMZP::colored-man-pages \
     OMZP::command-not-found
-    
+
 zinit wait"0b" lucid for \
  light-mode atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     Aloxaf/fzf-tab \
