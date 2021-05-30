@@ -22,7 +22,4 @@ done
 ln -svfn "$(readlink -f ./zshenv)" "$HOME/.zshenv"
 ln -svfn "$(readlink -f ./p10k.zsh)" "$HOME/.p10k.zsh"
 
-# Install git config
-ln -svfn "$(readlink -f ./gitconfig)" "$HOME/.gitconfig"
-
 echo " Done!"
