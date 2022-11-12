@@ -1,6 +1,29 @@
+export GPG_TTY=$(tty)
+
+# Set PATH, MANPATH, etc., for Homebrew
+if [ -d "/opt/homebrew/bin" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Set PATH for Python
+if [ -d "$HOME/Library/Python/3.9/bin" ]; then
+    export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+fi
+
+# source "$HOME/.cargo/env"
+
+# PEP582
+if command -v pdm >/dev/null 2>&1; then
+    if [ -n "$PYTHONPATH" ]; then
+        export PYTHONPATH="$HOME/Library/Application Support/pdm/venv/lib/python3.9/site-packages/pdm/pep582:$PYTHONPATH"
+    else
+        export PYTHONPATH="$HOME/Library/Application Support/pdm/venv/lib/python3.9/site-packages/pdm/pep582"
+    fi
+fi
+
 # Set zsh history file
 HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
-HISTTIMEFORMAT="[%F %T] " 
+HISTTIMEFORMAT="[%F %T] "
 HISTSIZE=1000000
 SAVEHIST=100000
 

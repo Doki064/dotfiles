@@ -1,3 +1,3 @@
 # Set zsh dotfile directory
-ZDOTDIR=$HOME/.zsh
+export ZDOTDIR=$HOME/.zsh
 source $ZDOTDIR/.zshenv
