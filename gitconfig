@@ -1,6 +1,7 @@
 [core]
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
+	editor = code --wait
 [init]
     defaultBranch = main
 [commit]
