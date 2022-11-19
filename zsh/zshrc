@@ -22,6 +22,10 @@ fi
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
+# Load plugins without Turbo
+zi for \
+    agkozak/zsh-z
+
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zi light-mode for \
@@ -31,28 +35,29 @@ zi light-mode for \
     @z-shell \
     @zsh-users+fast
 
-# Load theme and plugins without Turbo
-zi for \
-    agkozak/zsh-z
+zi wait lucid as"completion" for \
+    blockf \
+        zchee/zsh-completions \
+    OMZP::docker/_docker \
+    OMZP::docker-compose/_docker-compose
 
 # Load a few useful plugins for zsh with Turbo
 zi wait lucid for \
-    as"completion" \
-        OMZP::docker/_docker \
     OMZP::colored-man-pages \
     OMZP::command-not-found \
     OMZP::sudo \
     OMZP::git \
     OMZL::git.zsh
 
-zi wait"0a" lucid for \
+zi wait lucid for \
     skip"fd bat hexyl hyperfine vivid exa ripgrep" \
         @console-tools
 
-zi wait"0b" lucid for \
+zi wait lucid for \
     @py-utils
 
-zi wait"1a" pack atload=+"zicompinit_fast; zicdreplay" for \
+zi wait pack atload=+"zicompinit_fast; zicdreplay" for \
+    system-completions \
     brew-completions
 
 # ### End of Zi's installer chunk
@@ -63,8 +68,6 @@ colors
 
 autoload -U bashcompinit
 bashcompinit
-
-gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
