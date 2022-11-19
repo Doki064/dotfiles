@@ -58,8 +58,8 @@ for f in $(find gnupg/* -type f); do
 done
 
 chown -R "$USER:$(id -gn)" ~/.gnupg
-find ~/.gnupg -type f -exec chmod 600 {} \;  # Set 600 for files
-find ~/.gnupg -type d -exec chmod 700 {} \;  # Set 700 for directories
+find $HOME/.gnupg -type f -exec chmod 600 {} \;  # Set 600 for files
+find $HOME/.gnupg -type d -exec chmod 700 {} \;  # Set 700 for directories
 
 # Install ssh config
 if [ ! -d "$HOME/.ssh" ]; then
@@ -101,3 +101,18 @@ if [ -L "$HOME/.gitattributes" ] && [ -e "$HOME/.gitattributes" ]; then
 else
     echo $RED "Error: $(pwd)/gitattributes failed to install" $NOCOLOR
 fi
+
+# Install other configs
+if [ ! -d "$HOME/.config" ]; then
+    mkdir "$HOME/.config"
+fi
+
+for f in $(find config/* -depth 0); do
+    ln -svfn "$(readlink -f $f)" "$HOME/.config/$(basename $f)"
+
+    if [ -L "$HOME/.config/$(basename $f)" ] && [ -e "$HOME/.config/$(basename $f)" ]; then
+        echo $GREEN "Installed successfully" $NOCOLOR
+    else
+        echo $RED "Error: $f failed to install" $NOCOLOR
+    fi
+done
