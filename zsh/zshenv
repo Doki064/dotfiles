@@ -1,9 +1,10 @@
 # Setup the gpg-agent for SSH authentication
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  export SSH_AUTH_SOCK="$(/opt/homebrew/bin/gpgconf --list-dirs agent-ssh-socket)"
 fi
 export GPG_TTY=$(tty)
+/opt/homebrew/bin/gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # Set PATH, MANPATH, etc., for Homebrew
 if [ -d "/opt/homebrew/bin" ]; then
@@ -14,8 +15,6 @@ fi
 if [ -d "$HOME/Library/Python/3.9/bin" ]; then
     export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 fi
-
-# source "$HOME/.cargo/env"
 
 # PEP582
 if command -v pdm >/dev/null 2>&1; then
