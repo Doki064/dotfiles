@@ -1,7 +1,11 @@
+# Default
+Host *
+    Protocol 2
+    ForwardAgent no
+    IdentitiesOnly yes
+    UseRoaming no
+
 # GitHub
 Host github.com gist.github.com
     User git
-    ForwardAgent yes
-
-Host *
-    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_ed25519_yubikey.pub
