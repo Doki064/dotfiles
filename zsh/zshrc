@@ -6,13 +6,26 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Load options
-source $ZDOTDIR/.options
+if [[ -s "${ZDOTDIR:-$HOME}/.options" ]]; then
+    source "${ZDOTDIR:-$HOME}/.options"
+fi
 
-# Load functions
-source $ZDOTDIR/.functions
+# Load configurations
+if [[ -s "${ZDOTDIR:-$HOME}/.configurations" ]]; then
+    source "${ZDOTDIR:-$HOME}/.configurations"
+fi
 
 # Load aliases
-source $ZDOTDIR/.aliases
+if [[ -s "${ZDOTDIR:-$HOME}/.aliases" ]]; then
+    source "${ZDOTDIR:-$HOME}/.aliases"
+fi
+
+# Autoload user defined functions if exists
+if [[ -d "${ZDOTDIR:-$HOME}/.functions" ]]; then
+    for f in $(find "${ZDOTDIR:-$HOME}/.functions/*" -type f); do
+        autoload -Uz $f
+    done
+fi
 
 # Load Zi
 if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
@@ -61,13 +74,6 @@ zi wait pack atload=+"zicompinit_fast; zicdreplay" for \
     brew-completions
 
 # ### End of Zi's installer chunk
-
-# Load colors
-autoload -U colors
-colors
-
-autoload -U bashcompinit
-bashcompinit
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
