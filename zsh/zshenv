@@ -1,24 +1,8 @@
+# Set zsh history file format
+export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTTIMEFORMAT="[%F %T] "
+
 # Setup the gpg-agent for SSH authentication
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK="$(/opt/homebrew/bin/gpgconf --list-dirs agent-ssh-socket)"
 /opt/homebrew/bin/gpgconf --launch gpg-agent
-
-# PEP582
-if command -v pdm >/dev/null 2>&1; then
-    if [ -n "$PYTHONPATH" ]; then
-        export PYTHONPATH="$HOME/Library/Application Support/pdm/venv/lib/python3.9/site-packages/pdm/pep582:$PYTHONPATH"
-    else
-        export PYTHONPATH="$HOME/Library/Application Support/pdm/venv/lib/python3.9/site-packages/pdm/pep582"
-    fi
-fi
-
-# Set zsh history file
-HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
-HISTTIMEFORMAT="[%F %T] "
-HISTSIZE=1000000
-SAVEHIST=100000
-
-# Configure auto suggestions
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
