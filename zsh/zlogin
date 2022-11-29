@@ -1,0 +1,6 @@
+# Autoload user defined functions if exists
+if [[ -d "${ZDOTDIR:-$HOME}/.functions" ]]; then
+    for f in $(fd . "${ZDOTDIR:-$HOME}/.functions/" --type f); do
+        autoload -Uz $f
+    done
+fi

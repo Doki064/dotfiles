@@ -20,13 +20,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.aliases" ]]; then
     source "${ZDOTDIR:-$HOME}/.aliases"
 fi
 
-# Autoload user defined functions if exists
-if [[ -d "${ZDOTDIR:-$HOME}/.functions" ]]; then
-    for f in $(find "${ZDOTDIR:-$HOME}/.functions/*" -type f); do
-        autoload -Uz $f
-    done
-fi
-
 # Load Zi
 if [[ -r "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" ]]; then
   source "${XDG_CONFIG_HOME:-${HOME}/.config}/zi/init.zsh" && zzinit
